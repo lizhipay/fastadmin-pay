@@ -1,0 +1,33 @@
+<div id="content-container" class="container">
+    <div class="row">
+        <div class="col-md-3">
+            {include file="common/sidenav" /}
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default panel-recharge">
+                <div class="panel-body">
+                    <h2 class="page-header">充值记录
+                        <span><small class="text-danger">当前余额:{$user.money}</small></span>
+                        <a href="{:url('lizhifu/trade')}" class="btn btn-info btn-recharge pull-right"><i
+                                class="fa fa-cny"></i> 充值</a>
+                    </h2>
+                    {volist name='moneyloglist' id='log'}
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <p>订单号：{$log.trade_no}</p>
+
+                            <p class="text-success">充值金额：+{$log.amount}</p>
+                            <p>下单时间：{$log.createtime|datetime}</p>
+                            <p class="text-muted">支付时间：{if $log.status == 1} <span style="color: green;">{$log.paytime|datetime}</span>
+                                {else} <span style="color: red;">未支付</span> {/if}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    {/volist}
+                    <div class="pager">{$moneyloglist->render()}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
